@@ -3,13 +3,14 @@ package com.example.controllers;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+
 @RestController
 public class LoginController {
 	
@@ -42,4 +43,26 @@ public class LoginController {
 	    }
 
 	}
+	
+	@GetMapping("/session")
+    public int count(HttpSession session) {
+
+        Integer counter = (Integer) session.getAttribute("count");
+
+        if (counter == null) {
+            counter = 1;
+        } else {
+            counter++;
+        }
+
+        session.setAttribute("count", counter);
+        /*
+         * The _id is a UUID that will be Base64-encoded by the DefaultCookieSerializer and set as a value in the SESSION cookie. 
+         * Also, note that the attr attribute contains the actual value of our counter.
+         * https://www.baeldung.com/spring-session-mongodb
+         * */
+
+        return counter;
+    }
+	
 }
