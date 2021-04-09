@@ -1,6 +1,5 @@
 package com.example.model;
 
-import javax.annotation.Generated;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
