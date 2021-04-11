@@ -1,30 +1,52 @@
 package com.example.controllers;
 
+import java.util.Optional;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.model.User;
+import com.example.repository.UserRepository;
 
 
 @RestController
 public class LoginController {
 	
+	@Autowired
+	UserRepository repository;
+	
 	@GetMapping("/login")
-	public void login(@RequestParam("mail") String mail,@RequestParam("password") String password,HttpServletResponse response)
+	public String login(@RequestParam("mail") String mail,@RequestParam("password") String password,HttpServletResponse response)
 	{
-		System.out.print(password);
-		if(password.equals("admin123"))
+		Optional<User> candidate = repository.findByMail(mail);
+		if(candidate.isPresent())
 		{
-			Cookie ck = new Cookie("loggedIn",mail);
-			ck.setMaxAge(1200);
-			System.out.print("injecting cookie");
-			response.addCookie(ck);
+			User x = candidate.get();
+			if(x.getPassword().equals(password))
+			{
+				Cookie ck = new Cookie("loggedIn",mail);
+				ck.setMaxAge(1200);
+				System.out.print("injecting cookie");
+				response.addCookie(ck);
+				return "logged In";
+			}
+			else
+			{
+				return "Invalid password";
+			}
 		}
+		else
+		{
+			return "invalid credentials";
+		}
+		
 	}
 	
 	
