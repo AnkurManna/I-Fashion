@@ -3,6 +3,8 @@ package com.example.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,7 @@ public class ItemController {
 	@Autowired
 	ItemRepository repository;
 	
-	@PostMapping("/additem")
+	@PostMapping("/item/additem")
 	public String saveItem(@RequestBody Item item)
 	{
 		repository.save(item);
@@ -31,8 +33,8 @@ public class ItemController {
 		return "item added";
 	}
 	
-	@GetMapping("/findallItems")
-	public String getItems(){
+	@GetMapping("/item/findallItems")
+	public String getItems(HttpServletRequest req){
 		List<Item> all = repository.findAll();
 		ObjectMapper obj = new ObjectMapper();
 		String str = null;
@@ -45,20 +47,20 @@ public class ItemController {
 		return str;
 	}
 	
-	@GetMapping("/findAllItem/{id}")
+	@GetMapping("/item/findAllItem/{id}")
 	public Optional<Item> getItem(@PathVariable String id)
 	{
 		return repository.findById(id);
 	}
 	
-	@DeleteMapping("/itemdelete/{id}")
+	@DeleteMapping("/item/itemdelete/{id}")
 	public String deleteBook(@PathVariable
 			String id)
 	{
 		repository.deleteById(id);
 		return "item deleted";
 	}
-	@GetMapping("/searchitem/{type}")
+	@GetMapping("/item/searchitem/{type}")
 	public List<Item> searchItem(@PathVariable String type)
 	{
 		List<Item> res = repository.findByType(type);

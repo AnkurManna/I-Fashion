@@ -14,3 +14,7 @@ public class sessionconfig {
         return new JdkMongoSessionConverter(Duration.ofMinutes(30));
     }
 }
+/*spring.data.mongodb.host=localhost
+spring.data.mongodb.port=27017
+spring.data.mongodb.database=BookStore
+spring.session.store-type=mongodb*/
