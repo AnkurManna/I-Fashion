@@ -16,6 +16,6 @@ public class ItemAccessConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(Interceptor)
-          .addPathPatterns("/item/*");
+          .addPathPatterns("/item/**");
     }
 }

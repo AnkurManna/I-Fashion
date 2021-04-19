@@ -39,5 +39,16 @@ public class ItemAccessInterceptor extends HandlerInterceptorAdapter{
 
 	        
 	    }
+	 
+	 @Override
+	    public void afterCompletion(
+	      HttpServletRequest request, 
+	      HttpServletResponse response, 
+	      Object handler, 
+	      Exception ex) {
+	        //
+		 
+		 System.out.println(response);
+	    }
 	
 }
