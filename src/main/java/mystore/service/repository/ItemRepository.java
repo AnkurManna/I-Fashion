@@ -2,12 +2,14 @@ package mystore.service.repository;
 
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import mystore.domainmodel.models.*;
+/* @Repository provides a database specific encapsulated interface to ease the interaction with persistence layer */
 @Repository
 public interface ItemRepository extends MongoRepository<Item,String> {
 

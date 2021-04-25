@@ -10,11 +10,11 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:3000")
+                registry.addMapping("/**").allowedOrigins("https://localhost:3000")
                 .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
                 .allowedMethods("PUT", "DELETE","GET","POST","OPTIONS")
                 .allowedHeaders("Origin", "X-Requested-With", "Content-Type", "Accept")
-                .allowCredentials(true).maxAge(3600);;
+                .allowCredentials(true).maxAge(3600);
             }
         };
     }

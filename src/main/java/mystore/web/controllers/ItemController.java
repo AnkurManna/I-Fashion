@@ -30,6 +30,11 @@ public class ItemController {
 	;
 	//ItemAccessOperation op = new ItemAccessOperation(repository);
 	ItemAccessOperation op = new ItemAccessOperation();
+	@GetMapping("/")
+	public String welcome()
+	{
+		return "Hello World";
+	}
 	@PostMapping("/item/additem")
 	public String saveItem(@RequestBody Item item)
 	{
