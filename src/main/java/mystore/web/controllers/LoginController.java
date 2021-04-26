@@ -50,12 +50,15 @@ public class LoginController {
 		}
 		
 	}
-	@GetMapping("/logout")
-	public void logout(HttpServletResponse response)
+	
+	@GetMapping("/lgout")
+	public String logout(HttpServletResponse response)
 	{
 		Cookie ck=new Cookie("loggedIn","");//deleting value of cookie  
 		ck.setMaxAge(0);//changing the maximum age to 0 seconds  
+		System.out.print("logout");
 		response.addCookie(ck);
+		return "jjj";
 	}
 	
 	
