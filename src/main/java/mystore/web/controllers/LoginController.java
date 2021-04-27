@@ -23,7 +23,7 @@ public class LoginController {
 	UserRepository repository;
 	
 	@GetMapping("/login")
-	public String login(@RequestParam("mail") String mail,@RequestParam("password") String password,HttpServletResponse response)
+	public String login(@RequestParam("mail") String mail,@RequestParam("password") String password,HttpServletResponse response,HttpSession session)
 	{
 		Optional<User> candidate = repository.findByMail(mail);
 		if(candidate.isPresent())
@@ -32,11 +32,12 @@ public class LoginController {
 			if(x.getPassword().equals(password))
 			{
 				Cookie ck = new Cookie("loggedIn",mail);
-				Cookie gen = new Cookie("gender",candidate.get().getGender());
+				//Cookie gen = new Cookie("gender",candidate.get().getGender());
+				session.setAttribute("gender", candidate.get().getGender());
 				ck.setMaxAge(12000);
 				System.out.print("injecting cookie");
 				response.addCookie(ck);
-				response.addCookie(gen);
+				
 				return "logged In";
 			}
 			else

@@ -18,10 +18,10 @@ public class Item  {
 	public String id;
 	
 	public String brand,type,gender;
-	public int price,current_discount;
+	public int price,currentdiscount;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	public Date discount_duration,arrivaldate;
-	boolean new_arrival;
+	boolean newarrival;
 	public Item(String brand, String type, String gender, int price, int current_discount, Date discount_duration,
 			Date arrivaldate, boolean new_arrival) {
 		super();
@@ -29,13 +29,21 @@ public class Item  {
 		this.type = type;
 		this.gender = gender;
 		this.price = price;
-		this.current_discount = current_discount;
+		this.currentdiscount = current_discount;
 		this.discount_duration = discount_duration;
 		
 		this.arrivaldate = arrivaldate;
-		this.new_arrival = new_arrival;
+		this.newarrival = new_arrival;
 	}
 	
+	public int getCurrentdiscount() {
+		return currentdiscount;
+	}
+
+	public void setCurrentdiscount(int currentdiscount) {
+		this.currentdiscount = currentdiscount;
+	}
+
 	public String getBrand() {
 		return brand;
 	}
@@ -68,13 +76,6 @@ public class Item  {
 		this.price = price;
 	}
 
-	public int getCurrent_discount() {
-		return current_discount;
-	}
-
-	public void setCurrent_discount(int current_discount) {
-		this.current_discount = current_discount;
-	}
 
 	public Date getDiscount_duration() {
 		return discount_duration;
@@ -92,12 +93,12 @@ public class Item  {
 		this.arrivaldate = arrivaldate;
 	}
 
-	public boolean isNew_arrival() {
-		return new_arrival;
+	public boolean isNewarrival() {
+		return newarrival;
 	}
 
 	public void setNew_arrival(boolean new_arrival) {
-		this.new_arrival = new_arrival;
+		this.newarrival = new_arrival;
 	}
 
 	public Item() {}
