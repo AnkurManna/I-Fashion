@@ -15,6 +15,12 @@ public class CorsConfig {
                 .allowedMethods("PUT", "DELETE","GET","POST","OPTIONS")
                 .allowedHeaders("Origin", "X-Requested-With", "Content-Type", "Accept")
                 .allowCredentials(true).maxAge(3600);
+                
+                /*registry.addMapping("/item/searchitem/*").allowedOrigins("https://localhost:3000")
+                .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
+                .allowedMethods("PUT", "DELETE","GET","POST","OPTIONS")
+                .allowedHeaders("Origin", "X-Requested-With", "Content-Type", "Accept")
+                .allowCredentials(true).maxAge(3600);*/
             }
         };
     }

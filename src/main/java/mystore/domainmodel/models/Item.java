@@ -20,7 +20,7 @@ public class Item  {
 	public String brand,type,gender;
 	public int price,currentdiscount;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
-	public Date discount_duration,arrivaldate;
+	public Date discountduration,arrivaldate;
 	boolean newarrival;
 	public Item(String brand, String type, String gender, int price, int current_discount, Date discount_duration,
 			Date arrivaldate, boolean new_arrival) {
@@ -30,7 +30,7 @@ public class Item  {
 		this.gender = gender;
 		this.price = price;
 		this.currentdiscount = current_discount;
-		this.discount_duration = discount_duration;
+		this.discountduration = discount_duration;
 		
 		this.arrivaldate = arrivaldate;
 		this.newarrival = new_arrival;
@@ -78,11 +78,11 @@ public class Item  {
 
 
 	public Date getDiscount_duration() {
-		return discount_duration;
+		return discountduration;
 	}
 
 	public void setDiscount_duration(Date discount_duration) {
-		this.discount_duration = discount_duration;
+		this.discountduration = discount_duration;
 	}
 
 	public Date getArrivaldate() {

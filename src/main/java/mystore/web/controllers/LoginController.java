@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +31,11 @@ public class LoginController {
 		if(candidate.isPresent())
 		{
 			User x = candidate.get();
+			//Argon2PasswordEncoder encoder = new Argon2PasswordEncoder();
+			//Pbkdf2PasswordEncoder encoder = new Pbkdf2PasswordEncoder();
+
+			
+			//if(encoder.matches(password, x.getPassword()))
 			if(x.getPassword().equals(password))
 			{
 				Cookie ck = new Cookie("loggedIn",mail);
